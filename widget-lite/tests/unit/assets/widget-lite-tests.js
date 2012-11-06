@@ -41,8 +41,10 @@ YUI.add('widget-lite-tests', function (Y) {
 
         'unplug should remove all internal references': function () {
             var plugin = node.widget;
+            var contentBoxId = plugin.contentBox.get('id');
             node.unplug(Y.Lite.Widget);
 
+            Assert.isUndefined(Y.Node._instances[contentBoxId], 'content box should not be in Y.Node cache anymore');
             Assert.isUndefined(node.widget, 'plugin should not be in the node instance');
             Assert.isNull(plugin.boundingBox, 'plugin instance should not point to node');
             Assert.isNull(plugin.contentBox, 'plugin instance content should not point to a node');
