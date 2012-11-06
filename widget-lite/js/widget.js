@@ -19,18 +19,21 @@ function WidgetLite(config) {
     this.boundingBox = host;
     this.contentBox = host.one(this.CONTENT_SELECTOR) || host;
 
-    while (superclass && superclass !== WidgetLite.superclass.constructor) {
-        classes.push(superclass);
-        superclass = superclass.superclass && superclass.superclass.constructor;
-    }
-    /**
-    A list with all the constructors in the prototype chain
+    if (!this.constructor._classes) {
+        while (superclass && superclass !== WidgetLite.superclass.constructor) {
+            classes.push(superclass);
+            superclass = superclass.superclass && superclass.superclass.constructor;
+        }
+        /**
+        A list with all the constructors in the prototype chain
 
-    @property _classes
-    @type Array
-    @private
-    **/
-    this._classes = classes.reverse();
+        @property _classes
+        @type Array
+        @private
+        @static
+        **/
+        this.constructor._classes = classes.reverse();
+    }
 
     this.init(config);
 }
@@ -93,7 +96,7 @@ Y.extend(WidgetLite, Y.EventTarget, {
 
         this.contentBox.addClass(this.getClassName('content'));
 
-        Y.Array.each(this._classes, function (_class) {
+        Y.Array.each(this.constructor._classes, function (_class) {
             boundingBox.addClass(getClassName(_class.NS));
             Y.Object.each(_class.CLASS_NAMES, addClassesFromOptions);
         });
@@ -130,7 +133,7 @@ Y.extend(WidgetLite, Y.EventTarget, {
         **/
         this._handles = [];
 
-        Y.Array.each(this._classes, function (_class) {
+        Y.Array.each(this.constructor._classes, function (_class) {
             if (_class.prototype.hasOwnProperty('initializer')) {
                 _class.prototype.initializer.call(self, config);
             }
@@ -170,7 +173,7 @@ Y.extend(WidgetLite, Y.EventTarget, {
             handle.detach();
         });
 
-        Y.Array.each(this._classes, function (_class) {
+        Y.Array.each(this.constructor._classes, function (_class) {
             if (_class.prototype.hasOwnProperty('destructor')) {
                 _class.prototype.destructor.call(self);
             }
