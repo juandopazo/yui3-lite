@@ -1,0 +1,7 @@
+{
+	"button-lite": {
+		"requires": [
+			"widget-lite"
+		]
+	}
+}

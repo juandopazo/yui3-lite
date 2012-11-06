@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TabView Lite test</title>
+    <style type="text/css">
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <div>
+        <button id="simple">Simple</button>
+        <button id="toggler">Toggler</button>
+    </div>
+    <script src="/yui3/build/yui/yui.js"></script>
+    <script>
+    YUI({
+        coverage: [ 'button-lite' ],
+        filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw',
+        modules: {
+            'widget-lite': {
+                fullpath: '../../../../build/widget-lite/widget-lite.js',
+                requires: ['oop', 'node-base', 'node-pluginhost', 'classnamemanager']
+            },
+            'button-lite': {
+                fullpath: '../../../../build/button-lite/button-lite.js',
+                requires: ['widget-lite']
+            },
+            'button-lite-tests': {
+                fullpath: './assets/button-lite-tests.js',
+                requires: [ 'button-lite', 'test' ]
+            }
+        }
+    }).use('button-lite-tests', 'test-console', function (Y) {
+
+        (new Y.Test.Console()).render('#log');
+        
+        Y.Test.Runner.run();
+
+    });
+    </script>
+</body>
+</html>

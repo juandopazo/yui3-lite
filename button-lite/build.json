@@ -1,0 +1,11 @@
+{
+	"name": "button-lite",
+	"builds": {
+		"button-lite": {
+			"jsfiles": [
+				"button.js",
+				"toggle.js"
+			]
+		}
+	}
+}

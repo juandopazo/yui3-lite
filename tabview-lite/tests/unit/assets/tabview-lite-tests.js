@@ -40,6 +40,7 @@ YUI.add('tabview-lite-tests', function (Y) {
         'plugin should normalize class names': function () {
             Assert.isTrue(node.hasClass('yui3-tabview'), 'tabview bounding box should have a "yui3-tabview" class');
             Assert.isTrue(node.tabview.contentBox.hasClass('yui3-tabview-content'), 'tabview content box should have a "yui3-tabview-content" class');
+            
             list.each(function (li) {
                 Assert.isTrue(li.hasClass('yui3-tab'), 'tab bounding box should have a "yui3-tab" class');
                 Assert.isTrue(li.tab.contentBox.hasClass('yui3-tab-content'), 'tab content box should have a "yui3-tab-content" class');
@@ -58,8 +59,11 @@ YUI.add('tabview-lite-tests', function (Y) {
 
         'clicking on a tab should change the active tab': function () {
             Assert.isTrue(list.item(0).tab.isSelected(), 'first tab should be selected at first');
+
             list.item(1).tab.contentBox.simulate('click');
+
             Assert.isTrue(list.item(1).tab.isSelected(), 'second tab should be selected after click');
+            Assert.isFalse(list.item(0).tab.isSelected(), 'previous tab should not be selected after click');
         },
 
         'unplug should remove all internal references': function () {
@@ -75,6 +79,7 @@ YUI.add('tabview-lite-tests', function (Y) {
             Assert.isNull(plugin.panelNode, 'plugin panel node should not point to a node');
             Assert.isUndefined(Y.Node._instances[listNodeId], 'list node should not be cached by Y.Node anymore');
             Assert.isUndefined(Y.Node._instances[panelNodeId], 'panel node should not be cached by Y.Node anymore');
+
             Y.Array.each(tabPlugins, function (tabplug) {
                 Assert.isNull(tabplug.panelNode, 'tab plugin should not have a panel node');
             });
