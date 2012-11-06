@@ -192,7 +192,7 @@ Y.extend(WidgetLite, Y.EventTarget, {
             this.contentBox.destroy();
         }
 
-        this.contentBox = this.boundingBox = this._classes = this._handles = null;
+        this.contentBox = this.boundingBox = this._handles = null;
     }
 
 });
