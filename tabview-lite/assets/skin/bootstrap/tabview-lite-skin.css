@@ -1,0 +1,54 @@
+.yui3-skin-bootstrap .yui3-tabview-list {
+  list-style: none;
+  letter-spacing: -0.31em; /* webkit: collapse white-space between units */
+  *letter-spacing: normal; /* reset IE < 8 */
+  word-spacing: -0.43em; /* IE < 8 && gecko: collapse white-space between units */
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+}
+
+.yui3-skin-bootstrap .yui3-tabview-list > li {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  margin-bottom: -1px;
+}
+
+.yui3-skin-bootstrap .yui3-tabview-list > li > a {
+  display: inline-block;
+  padding: 8px 12px;
+  margin-right: 2px;
+  line-height: 20px;
+  color: #08C;
+  text-decoration: none;
+  border: 1px solid transparent;
+  -webkit-border-radius: 4px 4px 0 0;
+     -moz-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0;
+}
+
+.yui3-skin-bootstrap .yui3-tabview-list > li > a:hover {
+  border-color: #eeeeee #eeeeee #dddddd;
+  text-decoration: none;
+  background-color: #eeeeee;
+  color: #005580;
+}
+
+.yui3-skin-bootstrap .yui3-tabview-list > .yui3-tab-selected > a,
+.yui3-skin-bootstrap .yui3-tabview-list > .yui3-tab-selected > a:hover {
+  color: #555555;
+  cursor: default;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.yui3-skin-bootstrap .yui3-tab-panel {
+  display: none;
+}
+
+.yui3-skin-bootstrap .yui3-tab-panel-selected {
+  display: block;
+}

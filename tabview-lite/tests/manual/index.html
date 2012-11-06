@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TabView Lite test</title>
+    <link rel="stylesheet" href="/build/tabview-lite/assets/skin/bootstrap/tabview-lite-skin.css">
+    <!--<link rel="stylesheet" href="/yui3/build/widget-base/assets/skins/sam/widget-base.css">
+    <link rel="stylesheet" href="/yui3/build/tabview/assets/skins/sam/tabview.css">
+    <style type="text/css">
+.yui3-tabview-list {
+    letter-spacing: -0.31em; /* webkit: collapse white-space between units */
+    *letter-spacing: normal; /* reset IE < 8 */
+    word-spacing: -0.43em; /* IE < 8 && gecko: collapse white-space between units */
+}
+.yui3-tab {
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+    </style>-->
+    <style type="text/css">
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body class="yui3-skin-bootstrap">
+    <div id="demo">
+        <div>
+            <ul>
+                <li><a href="#foo">foo</a></li>
+                <li><a href="#bar">bar</a></li>
+                <li><a href="#baz">baz</a></li>
+            </ul>
+            <div>
+                <div id="foo">
+                    <p>foo content</p>
+                </div>
+                <div id="bar">
+                    <p>bar content</p>
+                </div>
+                <div id="baz">
+                    <p>baz content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/yui3/build/yui/yui.js"></script>
+    <script>
+YUI({
+    fetchCSS: false,
+    filter: 'raw',
+    modules: {
+        'widget-lite': {
+            requires: ['oop', 'node-base', 'node-pluginhost', 'classnamemanager'],
+            fullpath: '/build/widget-lite/widget-lite-min.js'
+        },
+        'tabview-lite': {
+            requires: ['widget-lite'],
+            fullpath: '/build/tabview-lite/tabview-lite-min.js'
+        }
+    }
+}).use(['tabview-lite'], function (Y) {
+    Y.one('#demo').plug(Y.Lite.TabView);
+});
+    </script>
+</body>
+</html>

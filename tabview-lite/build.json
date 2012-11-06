@@ -1,0 +1,11 @@
+{
+	"name": "tabview-lite",
+	"builds": {
+		"tabview-lite": {
+			"jsfiles": [
+				"tab.js",
+				"tabview.js"
+			]
+		}
+	}
+}

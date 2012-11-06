@@ -1,0 +1,7 @@
+{
+	"tabview-lite": {
+		"requires": [
+			"widget-lite"
+		]
+	}
+}
