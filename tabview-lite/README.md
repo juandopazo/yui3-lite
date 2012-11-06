@@ -6,7 +6,7 @@ meant to be used without interaction with other components and only
 from existing markup.
 
 The `Y.Lite.TabView` class is available for normalizing classnames. All the work
-is done by the `Plugin.Tab` class. `Plugin.Tab` as any other widget plugin based
+is done by the `Y.Lite.Tab` class. `Y.Lite.Tab` as any other widget plugin based
 on `Y.Lite.Widget` doesn't extend `Plugin.Base` so it doesn't have attributes.
 The consequence is that the selected status of the tab is based on the class name.
 
