@@ -1,0 +1,10 @@
+{
+	"widget-lite": {
+		"requires": [
+			"oop",
+			"node-base",
+			"node-pluginhost",
+			"classnamemanager"
+		]
+	}
+}

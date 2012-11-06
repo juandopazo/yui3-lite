@@ -1,0 +1,10 @@
+{
+	"name": "widget-lite",
+	"builds": {
+		"widget-lite": {
+			"jsfiles": [
+				"widget.js"
+			]
+		}
+	}
+}
