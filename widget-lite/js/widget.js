@@ -12,28 +12,31 @@ function WidgetLite(config) {
 
     config = config || {};
 
-    var superclass = this.constructor,
-        host = config.host,
-        classes = [];
+    var host = config.host;
 
+    /**
+    @property boundingBox
+    @type Node
+    **/
     this.boundingBox = host;
+
+    /**
+    @property contentBox
+    @type Node
+    **/
     this.contentBox = host.one(this.CONTENT_SELECTOR) || host;
 
-    if (!this.constructor._classes) {
-        while (superclass && superclass !== WidgetLite.superclass.constructor) {
-            classes.push(superclass);
-            superclass = superclass.superclass && superclass.superclass.constructor;
-        }
-        /**
-        A list with all the constructors in the prototype chain
+    /**
+    A list of event handles attached during the lifetime of the
+    plugin. All this handles get detached when the plugin is detached.
+    You're encouraged to add handles to this list when extending the
+    Y.Lite.Widget class.
 
-        @property _classes
-        @type Array
-        @private
-        @static
-        **/
-        this.constructor._classes = classes.reverse();
-    }
+    @property _handles
+    @type Array
+    @protected
+    **/
+    this._handles = [];
 
     this.init(config);
 }
@@ -119,19 +122,25 @@ Y.extend(WidgetLite, Y.EventTarget, {
     @private
     **/
     init: function (config) {
-        var self = this;
+        var self = this,
+            superclass = this.constructor,
+            classes = [];
 
-        /**
-        A list of event handles attached during the lifetime of the
-        plugin. All this handles get detached when the plugin is detached.
-        You're encouraged to add handles to this list when extending the
-        Y.Lite.Widget class.
+        if (!this.constructor._classes) {
+            while (superclass && superclass !== WidgetLite.superclass.constructor) {
+                classes.push(superclass);
+                superclass = superclass.superclass && superclass.superclass.constructor;
+            }
+            /**
+            A list with all the constructors in the prototype chain
 
-        @property _handles
-        @type Array
-        @protected
-        **/
-        this._handles = [];
+            @property _classes
+            @type Array
+            @private
+            @static
+            **/
+            this.constructor._classes = classes.reverse();
+        }
 
         Y.Array.each(this.constructor._classes, function (_class) {
             if (_class.prototype.hasOwnProperty('initializer')) {
