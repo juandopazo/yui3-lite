@@ -1,5 +1,7 @@
 var getClassName = Y.ClassNameManager.getClassName,
-    slice = Array.prototype.slice;
+    slice = Array.prototype.slice,
+    INITIALIZER = 'initializer',
+    DESTRUCTOR = 'destructor';
 
 /**
 A lighweight base class for developing simple plugins that behave like widgets.
@@ -143,7 +145,9 @@ Y.extend(WidgetLite, Y.EventTarget, {
         }
 
         Y.Array.each(this.constructor._classes, function (_class) {
-            if (_class.prototype.hasOwnProperty('initializer')) {
+            // Use a variable instead of a string literal as per YUI source documentation
+            // See source for BaseCore
+            if (_class.prototype.hasOwnProperty(INITIALIZER)) {
                 _class.prototype.initializer.call(self, config);
             }
         });
@@ -183,7 +187,7 @@ Y.extend(WidgetLite, Y.EventTarget, {
         });
 
         Y.Array.each(this.constructor._classes, function (_class) {
-            if (_class.prototype.hasOwnProperty('destructor')) {
+            if (_class.prototype.hasOwnProperty(DESTRUCTOR)) {
                 _class.prototype.destructor.call(self);
             }
         });
