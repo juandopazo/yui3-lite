@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Lite test</title>
+    <link rel="stylesheet" type="text/css" href="/build/button-lite/assets/skin/bootstrap/button-lite-skin.css">
+    <link rel="stylesheet" type="text/css" href="/build/buttongroup-lite/assets/skin/bootstrap/buttongroup-lite-skin.css">
+</head>
+<body class="yui3-skin-sam yui3-skin-bootstrap">
+    <h2>Radio Group</h2>
+    <div class="yui3-buttongroup" data-type="radio" id="group1">
+        <div class="yui3-buttongroup-content">
+            <button class="yui3-button">Foo</button>
+            <button class="yui3-button">Bar</button>
+            <button class="yui3-button">Baz</button>
+        </div>
+    </div>
+    <h2>Radio Group - allow none</h2>
+    <div class="yui3-buttongroup" data-type="radio" id="group2">
+        <div class="yui3-buttongroup-content">
+            <button class="yui3-button">Foo</button>
+            <button class="yui3-button">Bar</button>
+            <button class="yui3-button">Baz</button>
+        </div>
+    </div>
+    <h2>Checkbox Group</h2>
+    <div class="yui3-buttongroup" data-type="checkbox" id="group3">
+        <div class="yui3-buttongroup-content">
+            <button class="yui3-button">Foo</button>
+            <button class="yui3-button">Bar</button>
+            <button class="yui3-button">Baz</button>
+        </div>
+    </div>
+    <script src="/yui3/build/yui/yui.js"></script>
+    <script type="text/javascript">
+YUI({
+    filter: 'raw',
+    groups: {
+        lite: {
+            base: '/build/',
+            modules: {
+                'widget-lite': {
+                    requires: ['oop', 'node-base', 'node-pluginhost', 'classnamemanager'],
+                    path: 'widget-lite/widget-lite-min.js'
+                },
+                'button-lite': {
+                    requires: ['widget-lite'],
+                    path: 'button-lite/button-lite-min.js'
+                },
+                'buttongroup-lite': {
+                    requires: ['button-lite', 'event-custom-complex', 'node-event-delegate', 'template'],
+                    path: 'buttongroup-lite/buttongroup-lite-min.js'
+                }
+            }
+        }
+    },
+    modules: {
+        'buttongroup-tests': {
+            requires: ['buttongroup-lite', 'test', 'node-event-simulate'],
+            fullpath: 'assets/buttongroup-tests.js'
+        }
+    }
+}).use('buttongroup-tests', 'test-console', function (Y) {
+
+    (new Y.Test.Console()).render('#log');
+        
+    Y.Test.Runner.run();
+
+});
+    </script>
+</body>
+</html>

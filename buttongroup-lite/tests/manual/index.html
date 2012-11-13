@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Lite test</title>
+    <link rel="stylesheet" type="text/css" href="/build/button-lite/assets/skin/bootstrap/button-lite-skin.css">
+    <link rel="stylesheet" type="text/css" href="/build/buttongroup-lite/assets/skin/bootstrap/buttongroup-lite-skin.css">
+</head>
+<body class="yui3-skin-bootstrap">
+    <h2>Radio Group</h2>
+    <div class="yui3-buttongroup" data-type="radio" id="group1">
+        <div class="yui3-buttongroup-content">
+            <button class="yui3-button">Foo</button>
+            <button class="yui3-button">Bar</button>
+            <button class="yui3-button">Baz</button>
+        </div>
+    </div>
+    <h2>Checkbox Group</h2>
+    <div class="yui3-buttongroup" data-type="checkbox" id="group2">
+        <div class="yui3-buttongroup-content">
+            <button class="yui3-button">Foo</button>
+            <button class="yui3-button">Bar</button>
+            <button class="yui3-button">Baz</button>
+        </div>
+    </div>
+    <script src="/yui3/build/yui/yui.js"></script>
+    <script type="text/javascript">
+YUI({
+    skin: 'bootstrap',
+    filter: 'raw',
+    modules: {
+        'widget-lite': {
+            requires: ['oop', 'node-base', 'node-pluginhost', 'classnamemanager'],
+            fullpath: '/build/widget-lite/widget-lite-min.js'
+        },
+        'button-lite': {
+            requires: ['widget-lite'],
+            fullpath: '/build/button-lite/button-lite-min.js'
+        },
+        'buttongroup-lite': {
+            requires: ['button-lite', 'event-custom-complex', 'node-event-delegate', 'template'],
+            fullpath: '/build/buttongroup-lite/buttongroup-lite-min.js'
+        }
+    }
+}).use('buttongroup-lite', function (Y) {
+    var group1 = Y.one('#group1').plug(Y.Lite.ButtonGroup);
+    var group2 = Y.one('#group2').plug(Y.Lite.ButtonGroup);
+
+    group1.buttongroup.on('selectionChange', function (e) {
+        console.log('group1', e.selection);
+    });
+    group2.buttongroup.on('selectionChange', function (e) {
+        console.log('group2', e.selection);
+    });
+
+    Y.one('body').append('<h2>Radio from JavaScript</h2>');
+
+    var group3 = Y.Lite.ButtonGroup.createNode({
+        type: 'radio',
+        buttons: [{
+            label: 'foo',
+            selected: true
+        }, {
+            label: 'bar'
+        }]
+    }).appendTo('body');
+
+    Y.one('body').append('<h2>Checkbox from JavaScript</h2>');
+
+    var group4 = Y.Lite.ButtonGroup.createNode({
+        type: 'checkbox',
+        buttons: [{
+            label: 'foo',
+            selected: true
+        }, {
+            label: 'bar',
+            selected: true
+        }]
+    }).appendTo('body');
+
+    Y.one('body').append('<h2>Simple from JavaScript</h2>');
+
+    var group5 = Y.Lite.ButtonGroup.createNode({
+        buttons: [
+            {label: 'foo'},
+            {label: 'bar'}
+        ]
+    }).appendTo('body');
+
+});
+    </script>
+</body>
+</html>

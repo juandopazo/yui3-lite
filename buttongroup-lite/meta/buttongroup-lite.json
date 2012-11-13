@@ -1,0 +1,9 @@
+{
+	"buttongroup-lite": {
+		"requires": [
+			"button-lite",
+			"node-event-delegate",
+			"template"
+		]
+	}
+}
