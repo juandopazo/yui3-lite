@@ -7,7 +7,9 @@ var getClassName = Y.ClassNameManager.getClassName,
 A lighweight base class for developing simple plugins that behave like widgets.
 
 @class Lite.Widget
-@param config {Object} Object literal specifying configuration properties.
+@param {Object} config Object literal specifying configuration properties.
+  @param {String} [config.cssPrefix] Optional prefix for all CSS classes used by
+    this widget
 **/
 function WidgetLite(config) {
     WidgetLite.superclass.constructor.apply(this, arguments);
@@ -27,6 +29,14 @@ function WidgetLite(config) {
     @type Node
     **/
     this.contentBox = host.one(this.CONTENT_SELECTOR) || host;
+
+    /**
+    @property _cssPrefix
+    @type String
+    @private
+    **/
+    this._cssPrefix = config.cssPrefix || this.constructor.CSS_PREFIX || 
+                      getClassName(this.constructor.NS.toLowerCase());
 
     /**
     A list of event handles attached during the lifetime of the
@@ -116,7 +126,8 @@ Y.extend(WidgetLite, Y.EventTarget, {
     @return String
     **/
     getClassName: function () {
-        return getClassName.apply(Y.ClassNameManager, [this.constructor.NS].concat(slice.call(arguments)));
+        return getClassName.apply(Y.ClassNameManager, [this._cssPrefix]
+                .concat(slice.call(arguments)));
     },
 
     /**
@@ -145,7 +156,8 @@ Y.extend(WidgetLite, Y.EventTarget, {
         }
 
         Y.Array.each(this.constructor._classes, function (_class) {
-            // Use a variable instead of a string literal as per YUI source documentation
+            // Use a variable instead of a string literal as per YUI source 
+            // documentation
             // See source for BaseCore
             if (_class.prototype.hasOwnProperty(INITIALIZER)) {
                 _class.prototype.initializer.call(self, config);
