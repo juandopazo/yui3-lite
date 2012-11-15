@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DataTable Lite test</title>
+	<link rel="stylesheet"href="http://yui.yahooapis.com/combo?3.7.3/build/widget-base/assets/skins/sam/widget-base.css&amp;3.7.3/build/datatable-base/assets/skins/sam/datatable-base.css&amp;3.7.3/build/datatable-message/assets/skins/sam/datatable-message.css&amp;3.7.3/build/datatable-sort/assets/skins/sam/datatable-sort.css">
+</head>
+<body class="yui3-skin-sam">
+	<div id="simple">
+	</div>
+    <script src="http://yui.yahooapis.com/combo?3.7.3/build/yui/yui-min.js"></script>
+    <script>
+YUI().use(['datatable'], function (Y) {
+    var simple = new Y.DataTable({
+        columns: ["id", "name", "price"],
+        data   : [
+            { id: "ga_3475", name: "gadget",   price: "$6.99" },
+            { id: "sp_9980", name: "sprocket", price: "$3.75" },
+            { id: "wi_0650", name: "widget",   price: "$4.25" }
+        ],
+        summary: "Price sheet for inventory parts",
+        caption: "Example table with simple columns",
+        sortable: ['name', 'price']
+    });
+    
+    simple.render("#simple");
+});
+</script>
+</body>
+</html>

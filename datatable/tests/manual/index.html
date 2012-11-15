@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DataTable Lite test</title>
+	<link rel="stylesheet"href="http://yui.yahooapis.com/combo?3.7.3/build/widget-base/assets/skins/sam/widget-base.css&amp;3.7.3/build/datatable-base/assets/skins/sam/datatable-base.css&amp;3.7.3/build/datatable-message/assets/skins/sam/datatable-message.css&amp;3.7.3/build/datatable-sort/assets/skins/sam/datatable-sort.css">
+</head>
+<body class="yui3-skin-sam">
+	<div id="demo">
+		<div>
+			<table cellspacing="0">
+				<caption>Example table with simple columns</caption>
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>name</th>
+						<th>price</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script>
+(function () {
+	var tbody = document.getElementsByTagName('tbody')[0],
+		row, cell;
+
+	for (var i = 0; i < 2000; i++) {
+		row = document.createElement('tr');
+		cell = document.createElement('td');
+		cell.innerHTML = i;
+		row.appendChild(cell);
+		cell = document.createElement('td');
+		cell.innerHTML = (Math.random() * 10000).toString('16');
+		row.appendChild(cell);
+		cell = document.createElement('td');
+		cell.innerHTML = '$' + (Math.floor(Math.random() * 1000) / 100);
+		row.appendChild(cell);
+		tbody.appendChild(row);
+	}
+}());
+	</script>
+    <script src="http://yui.yahooapis.com/combo?3.7.3/build/yui/yui-min.js"></script>
+    <script>
+YUI({
+    modules: {
+        'widget-lite': {
+            requires: ['oop', 'node-base', 'node-pluginhost', 'classnamemanager'],
+            fullpath: '/build/widget-lite/widget-lite-min.js'
+        },
+        'datatable-lite': {
+            requires: ['widget-lite', 'node-event-delegate'],
+            fullpath: '/build/datatable-lite/datatable-lite-min.js'
+        }
+    }
+}).use(['datatable-lite'], function (Y) {
+    Y.one('#demo').plug(Y.Plugin.DataTable, {
+    	columns: [
+    		{key: 'id', sortable: true},
+    		{key: 'name', sortable: true},
+    		{key: 'price', sortable: false}
+    	]
+    });
+});
+</script>
+</body>
+</html>

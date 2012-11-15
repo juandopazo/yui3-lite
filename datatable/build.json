@@ -1,0 +1,10 @@
+{
+	"name": "datatable-lite",
+	"builds": {
+		"datatable-lite": {
+			"jsfiles": [
+				"datatable.js"
+			]
+		}
+	}
+}

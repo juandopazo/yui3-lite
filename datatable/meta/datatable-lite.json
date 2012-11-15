@@ -1,0 +1,8 @@
+{
+	"datatable-lite": {
+		"requires": [
+			"widget-lite",
+			"node-event-delegate"
+		]
+	}
+}
