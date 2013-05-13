@@ -1,6 +1,8 @@
 YUI3 Lite
 =========
 
+Status: experimental.
+
 Ongoing development of a lightweight version of YUI components. The objective
 is to provide a tiered API for YUI widgets based on three levels from simpler
 to more complex:
